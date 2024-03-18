@@ -1,4 +1,3 @@
-
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
@@ -13,8 +12,6 @@ from PIL import Image
 
 # Define the Base class for declarative table definitions
 Base = declarative_base()
-
-
 
 
 # Define SQLAlchemy ORM models for Channel, Video, and Comment
@@ -188,8 +185,6 @@ def scrape_and_store(channel_id):
     mongo_collection.insert_one(document)
     return "Data inserted into MongoDB."
     
-
-
 # Function to fetch all data and check if channel exists
 def migrate_channel_details(channel_name_s):
     # Read data from channels table
@@ -272,7 +267,6 @@ def show_comments_table(): #shows comment table
 
     return df3
 #streamlit part
-
 with st.sidebar:
     st.title(":red[YOUTUBE DATA HAVERSTING AND WAREHOUSING]")
     st.header("Skill Take Away")
@@ -299,8 +293,6 @@ if st.button("collect and store data"):
         st.success(insert)
         st.balloons()
 
-
-        
 all_channels= []
 for ch_data in mongo_collection.find({},{"_id":0,"channel":1}):
     all_channels.append(ch_data["channel"]["title"])
@@ -321,7 +313,6 @@ elif show_table=="VIDEOS":
 
 elif show_table=="COMMENTS":
     show_comments_table()
-
 
 #SQL questions
 sql_question = st.selectbox("Select the question",("1 What are the names of all the videos and their corresponding channels?",
